@@ -30,4 +30,24 @@ class ArrayStack:
 item = ArrayStack()
 item.push(4)
 item.push(5)
-print(item._data)
+
+
+"""This is how to use Stack in checking for delimeter errors"""
+def is_matched(expr):
+  lefty="({["
+  righty ="]})"
+  S = ArrayStack()
+  for c in expr:
+    if c in lefty:
+      S.push(c)
+    elif c in righty:
+      if  S.is_empty():
+        return False
+      if righty.index(c) != lefty.index(S.pop()):
+        return False
+    return S.is_empty()
+
+
+
+cam = '[x + 2] - [3 + y]'
+print(is_matched(cam))
